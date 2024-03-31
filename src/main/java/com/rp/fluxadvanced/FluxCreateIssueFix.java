@@ -10,10 +10,6 @@ public class FluxCreateIssueFix {
 
         //Only one instance of fluxsink
         Flux.create(fluxSink -> {
-//            fluxSink.next("Praveen");
-//            fluxSink.next("Kumar");
-//            fluxSink.next("Vanga");
-//            fluxSink.complete();
             String country;
             do {
                 country = Utils.faker().country().name();
@@ -23,7 +19,7 @@ public class FluxCreateIssueFix {
                     && !fluxSink.isCancelled());
             fluxSink.complete();
         })
-                .take(3)
+                .take(3) //Does not respect take operator it continues to emit more than 3 events so we also check fluxSink.isCancelled()
                 .subscribe(Utils.subscriber());
     }
 }

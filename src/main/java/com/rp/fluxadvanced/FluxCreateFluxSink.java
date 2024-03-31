@@ -15,16 +15,16 @@ public class FluxCreateFluxSink {
         //Invoke outside to produce names - Produce Just 1 name
         nameProducer.produce();
 
-        //Emmit's items with Multiple threads
+        //Emmit's items with Multiple threads -> Flux sink thread safe.
         Runnable runnable = nameProducer::produce;
         for(int i = 0; i < 10; i++) {
             new Thread(runnable).start();
         }
 
         //Keep on Producing names till it reaches Canada
-        String country;
-        do {
-            country = nameProducer.produceAndReturn();
-        } while (!country.equalsIgnoreCase("Canada"));
+//        String country;
+//        do {
+//            country = nameProducer.produceAndReturn();
+//        } while (!country.equalsIgnoreCase("Canada"));
     }
 }

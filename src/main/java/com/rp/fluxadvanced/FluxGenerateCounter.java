@@ -35,15 +35,15 @@ public class FluxGenerateCounter {
 //        }).subscribe(Utils.subscriber());
 
         Flux.generate(
-                () -> 1,
-                (counter, sink) -> {
+                () -> 1, //Initial state
+                (state, sink) -> {
                     String country = Utils.faker().country().name();
                     System.out.println("Emitting country: " + country);
                     sink.next(country);
-                    if (country.equalsIgnoreCase("Canada") || counter >= 10) {
+                    if (country.equalsIgnoreCase("Canada") || state >= 10) {
                         sink.complete();
                     }
-                    return counter + 1;
+                    return state + 1;
                 })
                 .take(4)
                 .subscribe(Utils.subscriber());

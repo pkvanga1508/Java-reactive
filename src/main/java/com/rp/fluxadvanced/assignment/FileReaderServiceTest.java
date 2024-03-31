@@ -1,5 +1,6 @@
 package com.rp.fluxadvanced.assignment;
 
+import com.github.javafaker.Faker;
 import com.rp.util.Utils;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.SynchronousSink;
@@ -17,7 +18,15 @@ public class FileReaderServiceTest {
 
     public static void main(String[] args) {
         FileReaderService fileReaderService = new FileReaderService();
-        fileReaderService.read(Paths.get("src/main/resources/sec03/file01.txt")).take(20)
+        fileReaderService.read(Paths.get("src/main/resources/sec03/file01.txt"))
+                .map(str -> {
+                    int number = Utils.faker().random().nextInt(0, 10);
+                    if(number > 8) {
+                        throw new RuntimeException("OOPS");
+                    }
+                    return str;
+                })
+                .take(20)
                 .subscribe(Utils.subscriber());
     }
 

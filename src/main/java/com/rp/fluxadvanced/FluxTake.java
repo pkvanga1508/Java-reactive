@@ -9,7 +9,7 @@ public class FluxTake {
 
         Flux.range(10, 20)
                 .log()
-                .take(3) //After 3rd item subscription is canceled is called
+                .take(3) //You can take only 3 items -> After 3rd item subscription is canceled
                 .log()
                 .subscribe(Utils.subscriber());
     }

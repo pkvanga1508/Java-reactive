@@ -14,7 +14,10 @@ import java.util.function.Consumer;
 public class FileReaderService {
 
     public Flux<String> read(Path path) {
-        return Flux.generate(openFileReader(path), readFile(), closeReader());
+        //This Pattern is used to open a resource, process the resource and close the resource.
+        return Flux.generate(openFileReader(path),
+                readFile(),
+                closeReader());
     }
 
     public Callable<BufferedReader> openFileReader(Path path) {

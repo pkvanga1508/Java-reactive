@@ -8,10 +8,14 @@ public class FluxCreate {
     public static void main(String[] args) {
 
         Flux.create(fluxSink -> {
-//            fluxSink.next("Praveen");
-//            fluxSink.next("Kumar");
-//            fluxSink.next("Vanga");
-//            fluxSink.complete();
+            fluxSink.next("Praveen");
+            fluxSink.next("Kumar");
+            fluxSink.next("Vanga");
+            System.out.println("-------");
+            for (int i = 0; i < 10; i++) {
+                fluxSink.next(Utils.faker().country().name());
+            }
+            System.out.println("-------");
             String country;
             do {
                 country = Utils.faker().country().name();
