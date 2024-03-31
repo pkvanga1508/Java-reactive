@@ -9,7 +9,7 @@ public class FluxInterval {
 
     public static void main(String[] args) throws InterruptedException {
 
-        Flux.interval(Duration.ofSeconds(1)) //ANy work that can be done periodically -> Update stock price
+        Flux.interval(Duration.ofSeconds(1)) //Any work that can be done periodically -> Update stock price
                 .subscribe(Utils.onNext());
         Utils.sleepSeconds(5);
     }

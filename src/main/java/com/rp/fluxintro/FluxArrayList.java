@@ -18,8 +18,8 @@ public class FluxArrayList {
                 Utils.faker().name().fullName(),
                 Utils.faker().name().fullName(),
                 Utils.faker().name().fullName()};
-        Flux<String> namesArrayFlux = Flux.fromArray(strArray);
 
+        Flux<String> namesArrayFlux = Flux.fromArray(strArray);
         namesFlux.subscribe(Utils.onNext(), Utils.onError(), Utils.onComplete());
         namesArrayFlux.subscribe(Utils.onNext(), Utils.onError(), Utils.onComplete());
 

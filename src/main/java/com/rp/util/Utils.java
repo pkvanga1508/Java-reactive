@@ -14,7 +14,7 @@ public class Utils {
     }
 
     public static Consumer<Throwable> onError() {
-        return err -> System.out.println("Received : " + err.getMessage());
+        return err -> System.out.println("ERROR : " + err.getMessage());
     }
 
     public static Runnable onComplete() {

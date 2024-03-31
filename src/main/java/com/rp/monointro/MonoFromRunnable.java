@@ -7,7 +7,6 @@ public class MonoFromRunnable {
 
     public static void main(String[] args) {
 
-        Runnable runnable = () -> System.out.println("From Runnable");
         Mono.fromRunnable(timeConsumingProcess())
                 .subscribe(Utils.onNext(),
                         Utils.onError(),

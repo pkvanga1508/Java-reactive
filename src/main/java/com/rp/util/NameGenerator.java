@@ -7,13 +7,13 @@ import java.util.List;
 
 public class NameGenerator {
 
-//    public static List<String> getNames(int count) {
-//        List<String> names = new ArrayList<>(count);
-//        for(int i = 0; i < count; i++) {
-//            names.add(getName());
-//        }
-//        return names;
-//    }
+    public static List<String> getNamesList(int count) {
+        List<String> names = new ArrayList<>(count);
+        for(int i = 0; i < count; i++) {
+            names.add(getName());
+        }
+        return names;
+    }
 
     public static Flux<String> getNames(int count) {
         return Flux.range(0, count)

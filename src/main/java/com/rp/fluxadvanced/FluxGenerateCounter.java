@@ -23,15 +23,29 @@ public class FluxGenerateCounter {
 //            fluxSink.complete();
 //        }).subscribe(Utils.subscriber());
 
-        AtomicInteger atomicInteger = new AtomicInteger(0);
-        Flux.generate(synchronousSink -> {
-            String country = Utils.faker().country().name();
-            System.out.println("Emitting country: " + country);
-            synchronousSink.next(country);
-            atomicInteger.getAndIncrement();
-            if (country.equalsIgnoreCase("Canada") || atomicInteger.get() >= 10) {
-                synchronousSink.complete();
-            }
-        }).subscribe(Utils.subscriber());
+//        AtomicInteger atomicInteger = new AtomicInteger(0);
+//        Flux.generate(synchronousSink -> {
+//            String country = Utils.faker().country().name();
+//            System.out.println("Emitting country: " + country);
+//            synchronousSink.next(country);
+//            atomicInteger.getAndIncrement();
+//            if (country.equalsIgnoreCase("Canada") || atomicInteger.get() >= 10) {
+//                synchronousSink.complete();
+//            }
+//        }).subscribe(Utils.subscriber());
+
+        Flux.generate(
+                () -> 1,
+                (counter, sink) -> {
+                    String country = Utils.faker().country().name();
+                    System.out.println("Emitting country: " + country);
+                    sink.next(country);
+                    if (country.equalsIgnoreCase("Canada") || counter >= 10) {
+                        sink.complete();
+                    }
+                    return counter + 1;
+                })
+                .take(4)
+                .subscribe(Utils.subscriber());
     }
 }
