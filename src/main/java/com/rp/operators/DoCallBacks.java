@@ -28,10 +28,11 @@ public class DoCallBacks {
                 .doOnError(err -> System.out.println("DO On Error " + err.getMessage()))
                 .doOnSubscribe(subscription -> System.out.println("Do On Subscribe 2: " + subscription))
                 .doOnCancel(() -> System.out.println("Do On Canceled"))
-                .doFinally(signalType -> System.out.println("Do Finally " + signalType))
+                .doFinally(signalType -> System.out.println("Do Finally 1 " + signalType))
                 .doFirst(() -> System.out.println("Do First 3"))
                 .doOnDiscard(Object.class, obj -> System.out.println("Do On Discard" + obj))
                 .take(2)
+                .doFinally(signalType -> System.out.println("Do Finally 2 " + signalType))
                 .subscribe(Utils.subscriber());
     }
 }

@@ -3,7 +3,7 @@ package com.rp.operators;
 import com.rp.util.Utils;
 import reactor.core.publisher.Flux;
 
-//Filter + Map
+//Handle -> Filter + Map
 public class Handle {
 
     public static void main(String[] args) {
@@ -25,9 +25,9 @@ public class Handle {
                 .map(Object::toString)
                 .handle((countryName, synchronousSink) -> {
                     synchronousSink.next(countryName);
-            if(countryName.equalsIgnoreCase("canada")) {
-                synchronousSink.complete();
-            }
+                if(countryName.equalsIgnoreCase("canada")) {
+                    synchronousSink.complete();
+                }
         }).subscribe(Utils.subscriber());
     }
 
